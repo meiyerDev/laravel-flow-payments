@@ -1,15 +1,30 @@
 {
-    "name": "themey99/flow-payments",
-    "type": "library",
-    "require": {
-        "php": "^7.2.5 || ^8.0",
-        "laravel/laravel": "^8.5"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Meiyer Jaimes",
-            "email": "meyerjaimes123@gmail.com"
-        }
-    ]
+  "name": "themey99/laravel-flow-payments",
+  "description": "Flow CL Payments handling for Laravel 5.8 and up",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Meiyer Jaimes",
+      "email": "meyerjaimes123@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.2 || ^8.0",
+    "illuminate/support": "^6.0|^7.0|^8.0",
+    "illuminate/http": "^6.0|^7.0|^8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Themey99\\LaravelFlowPayments\\": "src"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Themey99\\LaravelFlowPayments\\FlowPaymentServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev"
 }
