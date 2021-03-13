@@ -1,6 +1,6 @@
 {
   "name": "themey99/laravel-flow-payments",
-  "description": "Flow CL Payments handling for Laravel 5.8 and up",
+  "description": "Flow CL Payments handling for Laravel 6 and up",
   "type": "library",
   "license": "MIT",
   "authors": [
