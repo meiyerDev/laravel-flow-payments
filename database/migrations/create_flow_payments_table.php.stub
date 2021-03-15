@@ -17,13 +17,19 @@ class CreateFlowPaymentsTable extends Migration
             $table->id();
             $table->morphs('modelable');
             $table->bigInteger('flow_order');
-            $table->uuid('commerce_order');
+            $table->uuid('commerce_order')->unique();
             $table->date('request_date')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->string('subject')->nullable();
             $table->string('currency')->nullable();
             $table->double('amount')->nullable();
             $table->string('payer');
+            $table->string('url_confirmation');
+            $table->string('url_return');
+            $table->string('url_redirect');
+            $table->longText('optional')->nullable();
+            $table->longText('pending_info')->nullable();
+            $table->longText('payment_data')->nullable();
             $table->timestamps();
         });
     }

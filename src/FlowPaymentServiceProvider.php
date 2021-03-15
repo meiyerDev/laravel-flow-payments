@@ -39,7 +39,6 @@ class FlowPaymentServiceProvider extends ServiceProvider
             __DIR__ . '/../config/flow.php',
             'flow'
         );
-        $this->loadMigrationsFrom(__DIR__ . '/Migrations/');
     }
 
     protected function registerBindings()
