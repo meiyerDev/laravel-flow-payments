@@ -3,6 +3,7 @@
 namespace Themey99\LaravelFlowPayments\Contracts;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 interface FlowPaymentsContract
 {
@@ -50,9 +51,9 @@ interface FlowPaymentsContract
     /**
      * Method to Genearate a new Orden Payment
      * 
-     * @return array
+     * @return Collection
      */
-    public function generateOrdenPayment(): array;
+    public function generateOrdenPayment(): Collection;
 
     /**
      * Method to Received Payment

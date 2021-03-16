@@ -143,9 +143,9 @@ class FlowPayments implements FlowPaymentsContract
     /**
      * Method to Generate a new Orden Payment
      * 
-     * @return array
+     * @return Collection
      */
-    public function generateOrdenPayment(): array
+    public function generateOrdenPayment(): Collection
     {
         $response = $this->flowApi->send(
             "POST",
@@ -167,7 +167,9 @@ class FlowPayments implements FlowPaymentsContract
             );
         }
 
-        return array_merge($response, $addDataToResponse);
+        return collect(
+            array_merge($response, $addDataToResponse)
+        );
     }
 
     /**
