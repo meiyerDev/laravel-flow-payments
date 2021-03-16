@@ -10,6 +10,7 @@ use Themey99\LaravelFlowPayments\Contracts\FlowPaymentsApiContract;
 use Themey99\LaravelFlowPayments\Contracts\FlowPaymentsContract;
 use Illuminate\Support\Str;
 use Themey99\LaravelFlowPayments\Facades\FlowLog;
+use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
 
 class FlowPayments implements FlowPaymentsContract
 {
@@ -45,7 +46,7 @@ class FlowPayments implements FlowPaymentsContract
     {
         // SET DEFAULT ORDER
         $this->order = collect([
-            "commerceOrder" => Str::orderedUuid(),
+            "commerceOrder" => (string) (intval(app()->version()) > 6 ? Str::orderedUuid() : Str::uuid()),
             "subject" => "",
             "currency" => config('flow.currency'),
             "amount" => "",
