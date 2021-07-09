@@ -179,13 +179,13 @@ class FlowPayments implements FlowPaymentsContract
         ];
 
         if (config('flow.model')) {
-            $this->flowModel = $this->flowPaymentModelContract->createFromOrder(
+            $this->flowModelGenerated = $this->flowPaymentModelContract->createFromOrder(
                 $this->order->merge([
                     'urlRedirect' => $addDataToResponse['urlRedirect'],
                     'flowOrder' => $response['flowOrder']
                 ])
             );
-            $addDataToResponse['model'] = $this->flowModel;
+            $addDataToResponse['model'] = $this->flowModelGenerated;
         }
 
         return collect(
@@ -211,7 +211,8 @@ class FlowPayments implements FlowPaymentsContract
             collect($this->request->only('token'))
         );
 
-        $data['model'] = $this->flowPaymentModelContract->updateFromConfirmation($data['response']);
+        $this->flowModelGenerated = $this->flowPaymentModelContract->updateFromConfirmation($data['response']);
+        $data['model'] = $this->flowModelGenerated;
 
         return $data;
     }
