@@ -8,7 +8,7 @@ interface FlowPaymentModelContract
 {
     public function findByCommerceOrder(string $commerceOrder, $thowException = true);
 
-    public function createFromOrder(Collection $order): self;
+    public function createFromOrder(Collection $order): FlowPaymentModelContract;
 
-    public function updateFromConfirmation(array $order): self;
+    public function updateFromConfirmation(array $order): FlowPaymentModelContract;
 }

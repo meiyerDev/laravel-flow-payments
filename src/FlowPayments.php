@@ -155,7 +155,7 @@ class FlowPayments implements FlowPaymentsContract
      * 
      * @return FlowPaymentModelContract
      */
-    public function getModel()
+    public function getModel(): FlowPaymentModelContract
     {
         return $this->model;
     }

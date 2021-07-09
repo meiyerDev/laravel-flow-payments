@@ -14,7 +14,7 @@ interface FlowPaymentsContract
      *
      * @return self
      */
-    public function setRequest(Request $request): self;
+    public function setRequest(Request $request): FlowPaymentsContract;
 
     /**
      * Method to Merge data with order data
@@ -22,7 +22,7 @@ interface FlowPaymentsContract
      * @param array $data
      * @return self
      */
-    public function mergeOrder(array $data): self;
+    public function mergeOrder(array $data): FlowPaymentsContract;
 
     /**
      * Method to set optional data
@@ -30,7 +30,7 @@ interface FlowPaymentsContract
      * @param Collection|array $data
      * @return self
      */
-    public function setOptionalData($data): self;
+    public function setOptionalData($data): FlowPaymentsContract;
 
     /**
      * Method to set email data
@@ -38,7 +38,7 @@ interface FlowPaymentsContract
      * @param string $data
      * @return self
      */
-    public function setEmailData(string $email): self;
+    public function setEmailData(string $email): FlowPaymentsContract;
 
     /**
      * Method to set amount data
@@ -46,14 +46,14 @@ interface FlowPaymentsContract
      * @param int|float $data
      * @return self
      */
-    public function setAmountData($amount): self;
+    public function setAmountData($amount): FlowPaymentsContract;
 
     /**
      * Method to get Model generated
      * 
      * @return FlowPaymentModelContract
      */
-    public function getModel();
+    public function getModel(): FlowPaymentModelContract;
 
     /**
      * Method to Genearate a new Orden Payment

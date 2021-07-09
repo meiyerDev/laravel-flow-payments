@@ -92,7 +92,7 @@ class FlowPaymentModel extends Model implements FlowPaymentModelContract
             : $this->where('commerce_order', $commerceOrder)->first();
     }
 
-    public function createFromOrder(Collection $order): self
+    public function createFromOrder(Collection $order): FlowPaymentModelContract
     {
         return $this->create([
             'flow_order' => $order['flowOrder'],
@@ -107,7 +107,7 @@ class FlowPaymentModel extends Model implements FlowPaymentModelContract
         ]);
     }
 
-    public function updateFromConfirmation(array $order): self
+    public function updateFromConfirmation(array $order): FlowPaymentModelContract
     {
         $flowPayment = $this->findByCommerceOrder($order['commerceOrder']);
 
