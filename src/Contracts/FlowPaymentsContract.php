@@ -49,6 +49,13 @@ interface FlowPaymentsContract
     public function setAmountData($amount): self;
 
     /**
+     * Method to get Model generated
+     * 
+     * @return FlowPaymentModelContract
+     */
+    public function getModel();
+
+    /**
      * Method to Genearate a new Orden Payment
      * 
      * @return Collection

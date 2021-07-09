@@ -12,17 +12,29 @@ use Illuminate\Support\Str;
 use Themey99\LaravelFlowPayments\Facades\FlowLog;
 use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
 
+/**
+ * Class FlowPayments
+ * 
+ * @method setRequest
+ * @method mergeOrder
+ * @method setOptionalData
+ * @method setEmailData
+ * @method setAmountData
+ * @method generateOrdenPayment
+ * @method receivedConfirmPayment
+ * @method getModel
+ */
 class FlowPayments implements FlowPaymentsContract
 {
     /**
      * @var FlowPaymentsApiContract
      */
-    protected FlowPaymentsApiContract $flowApi;
+    protected $flowApi;
 
     /**
      * @var FlowPaymentModelContract
      */
-    protected FlowPaymentModelContract $flowPaymentModelContract;
+    protected $flowPaymentModelContract;
 
     /**
      * @var Collection
@@ -30,16 +42,14 @@ class FlowPayments implements FlowPaymentsContract
     protected $order;
 
     /**
-     * Data optional to urls
-     * 
-     * @var string
-     */
-    protected $optionalConfirmation, $optionalReturn;
-
-    /**
      * @var Request
      */
     protected $request;
+
+    /**
+     * @var FlowPaymentModelContract
+     */
+    protected $flowModelGenerated;
 
     //Constructor de la clase
     function __construct(FlowPaymentsApiContract $flowApi, FlowPaymentModelContract $flowPaymentModelContract)
@@ -141,6 +151,16 @@ class FlowPayments implements FlowPaymentsContract
     }
 
     /**
+     * Method to get Model generated
+     * 
+     * @return FlowPaymentModelContract
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
      * Method to Generate a new Orden Payment
      * 
      * @return Collection
@@ -159,12 +179,13 @@ class FlowPayments implements FlowPaymentsContract
         ];
 
         if (config('flow.model')) {
-            $addDataToResponse['model'] = $this->flowPaymentModelContract->createFromOrder(
+            $this->flowModel = $this->flowPaymentModelContract->createFromOrder(
                 $this->order->merge([
                     'urlRedirect' => $addDataToResponse['urlRedirect'],
                     'flowOrder' => $response['flowOrder']
                 ])
             );
+            $addDataToResponse['model'] = $this->flowModel;
         }
 
         return collect(
