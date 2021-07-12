@@ -49,6 +49,14 @@ interface FlowPaymentsContract
     public function setAmountData($amount): FlowPaymentsContract;
 
     /**
+     * Method to set urls to Flow
+     * @param string $urlConfirmation
+     * @param string $urlReturn
+     * @return self
+     */
+    public function setUrls(string $urlConfirmation, string $urlReturn): self;
+
+    /**
      * Method to get Model generated
      * 
      * @return FlowPaymentModelContract

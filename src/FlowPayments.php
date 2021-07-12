@@ -10,7 +10,6 @@ use Themey99\LaravelFlowPayments\Contracts\FlowPaymentsApiContract;
 use Themey99\LaravelFlowPayments\Contracts\FlowPaymentsContract;
 use Illuminate\Support\Str;
 use Themey99\LaravelFlowPayments\Facades\FlowLog;
-use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
 
 /**
  * Class FlowPayments
