@@ -63,8 +63,6 @@ class FlowPayments implements FlowPaymentsContract
             "paymentMethod" => config('flow.method_payment'),
             "email" => "",
             "optional" => null,
-            "urlConfirmation" => $this->generateUrl(config('flow.urls.url_confirmation')),
-            "urlReturn" => $this->generateUrl(config('flow.urls.url_return')),
         ]);
 
         // SET FLOW API SERVICE
@@ -151,6 +149,22 @@ class FlowPayments implements FlowPaymentsContract
     }
 
     /**
+     * Method to set urls to Flow
+     * @param string $urlConfirmation
+     * @param string $urlReturn
+     * @return self
+     */
+    public function setUrls(string $urlConfirmation, string $urlReturn): self
+    {
+        $this->mergeOrder([
+            "urlConfirmation" => $urlConfirmation,
+            "urlReturn" => $urlReturn,
+        ]);
+
+        return $this;
+    }
+
+    /**
      * Method to get Model generated
      * 
      * @return FlowPaymentModelContract
@@ -167,6 +181,8 @@ class FlowPayments implements FlowPaymentsContract
      */
     public function generateOrdenPayment(): Collection
     {
+        if (!$this->order->has('urlConfirmation', 'urlReturn')) $this->generateDefaultUrl();
+
         $response = $this->flowApi->send(
             "POST",
             '/payment/create',
@@ -215,6 +231,21 @@ class FlowPayments implements FlowPaymentsContract
         $data['model'] = $this->flowModelGenerated;
 
         return $data;
+    }
+
+    /**
+     * Method to generate default Url's to
+     * return and confirmation flow
+     * 
+     * @return self
+     */
+    protected function generateDefaultUrl(): self
+    {
+        $this->mergeOrder([
+            "urlConfirmation" => $this->generateUrl(config('flow.urls.url_confirmation')),
+            "urlReturn" => $this->generateUrl(config('flow.urls.url_return')),
+        ]);
+        return $this;
     }
 
     /**
