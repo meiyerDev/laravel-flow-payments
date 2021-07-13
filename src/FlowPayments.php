@@ -170,7 +170,7 @@ class FlowPayments implements FlowPaymentsContract
      */
     public function getModel(): FlowPaymentModelContract
     {
-        return $this->model;
+        return $this->flowModelGenerated;
     }
 
     /**
